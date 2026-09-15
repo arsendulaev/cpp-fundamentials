@@ -1,11 +1,9 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 int main() {
-    std::string s;
-    std::getline(std::cin, s);
-    std::reverse(s.begin(), s.end());
-    std::cout << s << std::endl;
+    std::string name, age;
+    std::cin >> name >> age;
+    std::cout << "Hi, " << name << "! You are " << age << " years old." << "\n";
     return 0;
 }
