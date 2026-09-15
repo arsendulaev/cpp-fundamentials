@@ -1,22 +1,38 @@
 #include <iostream>
+#include <iomanip>
 
-class Rectangle {
-    int width;
-    int height;
-
+class Shape {
 public:
-    Rectangle(int width, int height) : width(width), height(height) {
-    }
+    virtual double area() const = 0;
+    virtual ~Shape() = default;
+};
 
-    int area() const { return width * height; }
-    int perimeter() const { return 2 * (width + height); }
+class Square : public Shape {
+    double side;
+public:
+    Square(double _side) : side(_side) {}
+    double area() const override {
+        return side * side;
+    }
+};
+
+class Circle : public Shape {
+    double radius;
+public:
+    Circle(double _radius) : radius(_radius)  {}
+    double area() const override {
+        return 3.14159 * radius * radius;
+    }
 };
 
 int main() {
-    int width, height;
-    std::cin >> width >> height;
-    Rectangle rectangle(width, height);
-    std::cout << "area: " << rectangle.area() << std::endl;
-    std::cout << "perimeter: " << rectangle.perimeter() << std::endl;
+    double side, radius;
+    std::cin >> side >> radius;
+    Shape* square = new Square(side);
+    Shape* circle = new Circle(radius);
+    std::cout << std::fixed << std::setprecision(2) <<  square->area() << std::endl;
+    std::cout << circle->area() << std::endl;
+    delete square;
+    delete circle;
     return 0;
 }
