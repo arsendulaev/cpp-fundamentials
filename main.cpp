@@ -1,14 +1,22 @@
 #include <iostream>
-#include <vector>
-#include <numeric>
+
+class Rectangle {
+    int width;
+    int height;
+
+public:
+    Rectangle(int width, int height) : width(width), height(height) {
+    }
+
+    int area() const { return width * height; }
+    int perimeter() const { return 2 * (width + height); }
+};
 
 int main() {
-    std::vector<int> v;
-    int n;
-    while (std::cin >> n) {
-        v.push_back(n);
-    }
-    int ans = std::accumulate(v.begin(), v.end(), 0, [](int sum, int n) { return n % 2 == 0 ? sum + n * n : sum; });
-    std::cout << ans << std::endl;
+    int width, height;
+    std::cin >> width >> height;
+    Rectangle rectangle(width, height);
+    std::cout << "area: " << rectangle.area() << std::endl;
+    std::cout << "perimeter: " << rectangle.perimeter() << std::endl;
     return 0;
 }
